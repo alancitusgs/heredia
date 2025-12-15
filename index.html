@@ -3,112 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Prueba Chatbot - HeredIA</title>
+  <title>HeredIA – Chatbot</title>
 
   <style>
-    :root { color-scheme: light; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #f6f7fb;
-      color: #111827;
+      background: #f5f7fb;
     }
-    .wrap {
-      max-width: 980px;
+
+    .page {
+      max-width: 1000px;
       margin: 40px auto;
       padding: 0 16px;
     }
+
     .card {
       background: #fff;
-      border: 1px solid #e5e7eb;
       border-radius: 14px;
-      box-shadow: 0 8px 22px rgba(0,0,0,.06);
-      padding: 18px 18px 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
     }
-    .row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 10px;
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
     }
-    input {
-      flex: 1 1 220px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
-      outline: none;
+
+    p {
+      margin: 0 0 16px;
+      color: #555;
     }
-    button {
-      padding: 10px 14px;
-      border: 0;
-      border-radius: 10px;
-      cursor: pointer;
-      background: #111827;
-      color: #fff;
-      font-weight: 600;
-    }
-    .hint {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #6b7280;
-      line-height: 1.35;
-    }
-    code { background:#f3f4f6; padding: 2px 6px; border-radius: 8px; }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="page">
     <div class="card">
-      <h2 style="margin:0 0 6px;">Página de prueba – Chatbot</h2>
-      <div class="hint">
-        Esta página solo carga <code>https://hered-ia.cayetano.pe/embed.js</code>.
-        Si el chatbot no aparece, revisa la consola (F12) y tu CORS/origen permitido.
-      </div>
+      <h1>Asistente Virtual Hered-IA</h1>
+      <p>
+        Chatbot de soporte académico y administrativo.
+      </p>
 
-      <div class="row">
-        <input id="clientId" type="text" placeholder="clientId (ej: 5vHAAz...)" />
-        <input id="appId" type="text" placeholder="appId (opcional)" />
-        <button id="reloadBtn" type="button">Recargar chatbot</button>
-      </div>
-
-      <div class="hint">
-        Tip: si tu embed requiere <b>clientId</b> por querystring, coloca el valor y presiona “Recargar chatbot”.
-        Si no sabes el clientId, prueba primero sin llenar nada y mira la consola.
-      </div>
+      <!-- El iframe del chatbot se inyecta automáticamente aquí -->
     </div>
   </div>
 
-  <!-- 1) Cargamos el embed.js desde tu dominio -->
-  <script src="https://hered-ia.cayetano.pe/embed.js"></script>
-
-  <!-- 2) (Opcional) Forzar parámetros por querystring, recargando la página -->
-  <script>
-    (function () {
-      const clientIdInput = document.getElementById('clientId');
-      const appIdInput = document.getElementById('appId');
-      const reloadBtn = document.getElementById('reloadBtn');
-
-      // precargar desde la URL actual
-      const url = new URL(window.location.href);
-      clientIdInput.value = url.searchParams.get('clientId') || '';
-      appIdInput.value = url.searchParams.get('appId') || '';
-
-      reloadBtn.addEventListener('click', () => {
-        const next = new URL(window.location.href);
-        const clientId = clientIdInput.value.trim();
-        const appId = appIdInput.value.trim();
-
-        if (clientId) next.searchParams.set('clientId', clientId);
-        else next.searchParams.delete('clientId');
-
-        if (appId) next.searchParams.set('appId', appId);
-        else next.searchParams.delete('appId');
-
-        window.location.href = next.toString();
-      });
-    })();
+  <!-- INVOCACIÓN DIRECTA DEL CHATBOT -->
+  <script
+    src="https://hered-ia.cayetano.pe/embed.js"
+    data-client-id="lE-Gpoph6aD2W8JVO07dAQYoIdDbvlrmS4b_G3NUB54"
+    data-app-id="HERED_IA_APP"
+    defer>
   </script>
+
 </body>
 </html>
